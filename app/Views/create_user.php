@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <form action="<?=base_url('user/store')?>" method="post">
     <table>
         <tr>
             <td>Nama</td>
@@ -21,6 +21,7 @@
         <tr>
             <td><input type="submit" value="Simpan"></td>
         </tr>
+    </table>
     </form>
 </body>
 </html>

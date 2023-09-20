@@ -24,4 +24,15 @@ class UserController extends BaseController
     {
         return view('create_user');
     }
+    public function store()
+    {
+        $nama = $this->request->getPost('nama');
+        $npm = $this->request->getPost('npm');
+        $data=[
+            'nama'=>$nama,
+            'npm'=>$npm
+        ];
+        // dd($data);
+        return view('profile', $data);
+    }
 }
