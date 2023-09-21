@@ -10,13 +10,12 @@ class UserController extends BaseController
     {
         //
     }
-    public function profile($nama = "", $kelas = "", $npm = "")
+    public function profile($nama = "", $npm = "")
 
     {
     $data = [
         'nama' => $nama,
-        'kelas' => $kelas,
-        'npm' => $npm,
+        'npm' => $npm
     ];
         return view('profile', $data);
     }
