@@ -10,12 +10,14 @@ class UserController extends BaseController
     {
         //
     }
-    public function profile($nama = "", $npm = "")
+    public function profile($nama = "", $kelas = "", $npm = "", $alamat = "")
 
     {
     $data = [
         'nama' => $nama,
-        'npm' => $npm
+        'kelas' => $kelas,
+        'npm' => $npm,
+        'alamat' => $alamat
     ];
         return view('profile', $data);
     }
@@ -26,10 +28,14 @@ class UserController extends BaseController
     public function store()
     {
         $nama = $this->request->getPost('nama');
+        $kelas = $this->request->getPost('kelas');
         $npm = $this->request->getPost('npm');
+        $alamat = $this->request->getPost('alamat');
         $data=[
             'nama'=>$nama,
-            'npm'=>$npm
+            'kelas'=>$kelas,
+            'npm'=>$npm,
+            'alamat'=>$alamat
         ];
         // dd($data);
         return view('profile', $data);
