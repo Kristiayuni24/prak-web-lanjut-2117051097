@@ -1,5 +1,4 @@
 <?php
-use App\Controllers\Home;
 
 use CodeIgniter\Router\RouteCollection;
 
@@ -9,6 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('user/profile/(:any)/(:any)/(:any)', 'UserController::profile/$1/$2');
 
-#form
+# form
 $routes->get('/user/create', 'UserController::create');
 $routes->post('/user/store', 'UserController::store');
