@@ -63,11 +63,6 @@
                 <td>:</td>
                 <td><?= $npm ?></td>
             </tr>
-            <tr>
-                <td>Alamat</td>
-                <td>:</td>
-                <td><?= $alamat ?></td>
-            </tr>
         </table>
     </div>
 </div>

@@ -3,69 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Bootstrap</title>
-
-    <!-- Tambahkan link ke Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Tambahkan gaya CSS khusus di sini -->
+    <link rel="stylesheet" href="<?php echo base_url('./css/style.css'); ?>">
     <style>
         body {
+            font-family: Arial, sans-serif;
             background-color: #d3d3d3;
         }
-
         .container {
-            background-color: #ffffff;
+            max-width: 400px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         label {
             font-weight: bold;
+            display: block;
         }
-
-        input.form-control {
+        input[type="text"],
+        select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
         }
-
-        button.btn-primary {
-            background-color: #007bff;
+        .is-invalid {
+            border-color: #ff6347; /* Red border for invalid inputs */
+        }
+        .error-message {
+            color: #ff6347;
+            margin-top: 5px;
+        }
+        .center {
+            text-align: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
             border: none;
-        }
-
-        button.btn-primary:hover {
-            background-color: #0056b3;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
         }
     </style>
+    <title>Create User</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <form action="<?=base_url('user/store')?>" method="post">
+    <div class="container">
+        <div class="center">
+            <?php $validation = \Config\Services::validation();?>
+
+            <h2>Create User</h2>
+        </div>
+
+        <form action="<?= base_url('/user/store')?>" method="POST">
             <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
+                <label for="nama">Nama:</label>
+                <input class="form-control <?= (empty(validation_show_error('nama'))) ? '' : 'is-invalid' ?>" type="text" name="nama" id="nama" value="<?= old('nama') ?>" required>
+                <?= validation_show_error('nama'); ?>
             </div>
+
             <div class="form-group">
-                <label for="kelas">Kelas</label>
-                <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukkan kelas">
+                <label for="npm">NPM:</label>
+                <input class="form-control <?= (empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" type="text" name="npm" id="npm" value="<?= old('npm') ?>" required>
+                <?= validation_show_error('npm'); ?>
             </div>
+
             <div class="form-group">
-                <label for="npm">NPM</label>
-                <input type="text" class="form-control" id="npm" name="npm" placeholder="Masukkan NPM">
+                <label for="kelas">Kelas:</label>
+                <select name="kelas" id="kelas" class="form-control">
+                    <?php foreach ($kelas as $item): ?>
+                        <option value="<?= $item['id'] ?>">
+                            <?= $item['nama_kelas'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
-            <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat">
+
+            <div class="center">
+                <button type="submit" class="btn">Submit</button>
             </div>
-            <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>
 </body>
