@@ -1,60 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo base_url('./css/style.css'); ?>">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #d3d3d3;
-        }
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-        }
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .is-invalid {
-            border-color: #ff6347; /* Red border for invalid inputs */
-        }
-        .error-message {
-            color: #ff6347;
-            margin-top: 5px;
-        }
-        .center {
-            text-align: center;
-        }
-        .btn {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-    </style>
-    <title>Create User</title>
-</head>
-<body>
+    <?= $this->extend('layouts/app')?>
+    <?= $this->section('content')?>
+
     <div class="container">
         <div class="center">
             <?php $validation = \Config\Services::validation();?>
@@ -91,5 +37,6 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+
+    <?= $this->endSection()?>
+

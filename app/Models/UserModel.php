@@ -6,9 +6,6 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    public function saveUser($data){
-        $this->insert($data);
-    }
     protected $DBGroup          = 'default';
     protected $table            = 'user';
     protected $primaryKey       = 'id';
@@ -41,5 +38,13 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function saveUser($data){
+        $this->insert($data);
+    }
+
+    public function getUser(){
+        return $this->join('kelas', 'kelas.id=user.id_kelas')->findAll();
+    }
 }
 
