@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -43,7 +43,11 @@
         }
     </style>
 </head>
-<body>
+<body> -->
+
+<?= $this->extend('layouts/app')?>
+<?= $this->section('content')?>
+
 <div class="card text-center">
     <img src="<?php echo base_url('ayubi.png'); ?>" class="card-img-top rounded-circle mx-auto d-block" alt="...">
     <div class="card-body">
@@ -67,5 +71,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+<?=$this->endSection() ?>
+<!-- </body>
+</html> -->

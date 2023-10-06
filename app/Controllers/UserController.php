@@ -4,13 +4,28 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\KelasModel;
 
 class UserController extends BaseController
 {
-    protected $helpers=['Form'];
+    public $userModel;
+    public $kelasModel;
+
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+        $this->kelasModel = new KelasModel();
+    }
+
+    protected $helpers=['form'];
     public function index()
     {
-        
+        // $users = UserModel->getUser();
+        $data = [
+            'title' => 'List User',
+            'users' => $this->userModel->getUser(),
+        ];
+        return view('list_user', $data);
     }
     public function profile($nama = "", $kelas = "", $npm = ""){
         $data = [
@@ -21,30 +36,14 @@ class UserController extends BaseController
         return view('profile', $data);
 }
     public function create(){
-        $kelas = [
-            [
-                'id' => 1,
-                'nama_kelas' => 'A'
-            ],
-            [
-                'id' => 2,
-                'nama_kelas' => 'B'
-            ],
-            [
-                'id' => 3,
-                'nama_kelas' => 'C'
-            ],
-            [
-                'id' => 4,
-                'nama_kelas' => 'D'
-            ],
-        ];
+        session();
 
-        $data = [
+        $kelas = $this->kelasModel->getKelas();
+        $data=[
+            'title' => 'Create User',
             'kelas' => $kelas,
         ];
-
-        return view('create_user', $data);
+        return view('create_user',$data);
     }
 
     public function store(){
@@ -75,28 +74,29 @@ class UserController extends BaseController
         'id_kelas' => $this->request->getVar('kelas'),
         'npm' => $this->request->getVar('npm'),
        ]);
+       return redirect()->to('/user/index');
 
-        $data = [
-            'nama' => $this->request->getVar('nama'),
-            'kelas' => $this->request->getVar('kelas'),
-            'npm' => $this->request->getVar('npm'),
-        ];
-        return view('profile', $data);
-    }
+    //     $data = [
+    //         'nama' => $this->request->getVar('nama'),
+    //         'kelas' => $this->request->getVar('kelas'),
+    //         'npm' => $this->request->getVar('npm'),
+    //     ];
+    //     return view('profile', $data);
+    // }
 
-	/**
-	 * @return mixed
-	 */
-	public function getHelpers() {
-		return $this->helpers;
-	}
+	// /**
+	//  * @return mixed
+	//  */
+	// public function getHelpers() {
+	// 	return $this->helpers;
+	// }
 	
-	/**
-	 * @param mixed $helpers 
-	 * @return self
-	 */
-	public function setHelpers($helpers): self {
-		$this->helpers = $helpers;
-		return $this;
+	// /**
+	//  * @param mixed $helpers 
+	//  * @return self
+	//  */
+	// public function setHelpers($helpers): self {
+	// 	$this->helpers = $helpers;
+	// 	return $this;
 	}
 }
