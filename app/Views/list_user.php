@@ -24,7 +24,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                <a href = "<?= base_url('user/create')?>"> Tambah Data </a>
                     <?php foreach ($users as $user) { ?>
+
                         <tr>
                             <td><?= $user['id'] ?></td>
                             <td><?= $user['nama'] ?></td>
@@ -32,6 +34,7 @@
                             <td><?= $user['nama_kelas'] ?></td>
                             <td>
                                 <!-- Add action buttons here, e.g., Edit and Delete -->
+                                <a href = "<?= base_url('user/' . $user['id']) ?>">Detail</a>
                                 <a href="#" class="btn btn-primary btn-sm">Edit</a>
                                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
                             </td>
@@ -43,7 +46,7 @@
 
         <!-- Add New User Button -->
         <div class="text-center mt-4">
-            <a href="#" class="btn btn-success">Tambah User</a>
+            <a href="<?= base_url('user/create')?>" class="btn btn-success">Tambah User</a>
         </div>
     </div>
 <?= $this->endSection() ?>

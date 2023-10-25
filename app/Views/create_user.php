@@ -8,7 +8,7 @@
             <h2>Create User</h2>
         </div>
 
-        <form action="<?= base_url('/user/store')?>" method="POST">
+        <form action="<?= base_url('/user/store')?>" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nama">Nama:</label>
                 <input class="form-control <?= (empty(validation_show_error('nama'))) ? '' : 'is-invalid' ?>" type="text" name="nama" id="nama" value="<?= old('nama') ?>" required>
@@ -30,6 +30,11 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Foto:</label>
+                <input class="form-control" type="file" name="foto" id="foto">
             </div>
 
             <div class="center">

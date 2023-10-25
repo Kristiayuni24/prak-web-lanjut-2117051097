@@ -6,6 +6,8 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
+
+    
     protected $DBGroup          = 'default';
     protected $table            = 'user';
     protected $primaryKey       = 'id';
@@ -13,7 +15,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'npm', 'id_kelas'];
+    protected $allowedFields    = ['nama', 'id_kelas', 'npm','foto'];
 
     // Dates
     protected $useTimestamps = true;
@@ -21,6 +23,20 @@ class UserModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+    
+    public function saveUser($data){
+        $this->insert($data);
+    }
+
+    public function getUser($id = null){
+        if ($id != null){
+            return $this->select('user.*, kelas.nama_kelas')
+                ->join('kelas', 'kelas.id=user.id_kelas')->find($id);
+        }
+        return $this->select('user.*, kelas.nama_kelas')
+            ->join('kelas', 'kelas.id=user.id_kelas')->findAll();
+    }
+    
 
     // Validation
     protected $validationRules      = [];
@@ -38,13 +54,6 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function saveUser($data){
-        $this->insert($data);
-    }
-
-    public function getUser(){
-        return $this->join('kelas', 'kelas.id=user.id_kelas')->findAll();
-    }
+    
 }
 
