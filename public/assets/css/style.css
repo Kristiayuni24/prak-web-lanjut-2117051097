@@ -1,0 +1,49 @@
+html,
+    body {
+      height: 100%;
+    }
+
+    .form-signin {
+      max-width: 330px;
+      padding: 1rem;
+    }
+
+    .form-signin .form-floating:focus-within {
+      z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .btn-custom {
+      background-color: blue;
+      /* Anda juga dapat menambahkan gaya lain di sini, seperti warna teks atau padding. */
+  }
+style,
+        body {
+            background-color: black; /* Warna latar belakang hitam */
+            color: white; /* Warna teks putih */
+            display: flex;
+            justify-content: flex-end; /* Menggeser card ke kanan */
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            max-width: 300px;
+            background-color: #17a2b8; /* Warna latar belakang card (sesuaikan dengan preferensi Anda) */
+            color: white;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%; /* Membuat foto bulat */
+        }
