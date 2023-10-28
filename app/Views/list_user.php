@@ -2,6 +2,7 @@
 
 <?= $this->section('content') ?>
     <!-- Ini halaman list user -->
+    
 
     <!-- Container -->
     <div class="container">
@@ -32,11 +33,16 @@
                             <td><?= $user['nama'] ?></td>
                             <td><?= $user['npm'] ?></td>
                             <td><?= $user['nama_kelas'] ?></td>
-                            <td>
-                                <!-- Add action buttons here, e.g., Edit and Delete -->
-                                <a href = "<?= base_url('user/' . $user['id']) ?>">Detail</a>
-                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            <td style="display: flex;" class="align-middle text-center">
+                                <a class="btn btn-link text-primary px-3 mb-0" href="<?= base_url('user/' . $user['id']) ?>"><i class="fas fa-eye me-2" aria-hidden="true"></i>Detail</a>
+                                <a class="btn btn-link text-warning px-3 mb-0" href="<?= base_url('user/' . $user['id'] . '/edit') ?>"><i class="fas fa-pencil-alt me-2" aria-hidden="true"></i>Edit</a>
+                                <form action="<?= base_url('user/' . $user['id']) ?>" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <?= csrf_field() ?>
+                                    <button class="btn btn-link text-danger mb-0">
+                                        <i class="fas fa-trash me-2" aria-hidden="true"></i>Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     <?php } ?>

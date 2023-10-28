@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Exception;
+use mysqli_sql_exception;
 
 class KelasModel extends Model
 {
@@ -16,7 +18,7 @@ class KelasModel extends Model
     protected $allowedFields    = ['nama_kelas'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -39,7 +41,31 @@ class KelasModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getKelas(){
+    public function saveKelas($data)
+    {
+        $this->insert($data);
+    }
+    public function getKelas($id = null)
+    {
+        if ($id != null) {
+            return $this->select('kelas.*')
+                ->find($id);
+        }
         return $this->findAll();
+    }
+    public function getAnggotaKelas($id = null)
+    {
+        return $this->select('kelas.*, user.nama')
+            ->join('user', 'user.id_kelas = kelas.id')
+            ->where('kelas.id', $id)
+            ->findAll();
+    }
+    public function updateKelas($data, $id)
+    {
+        return $this->update($id, $data);
+    }
+    public function deleteKelas($id)
+    {
+        $this->delete($id);
     }
 }

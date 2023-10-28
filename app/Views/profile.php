@@ -15,14 +15,14 @@
             height: 100vh;
         }
         .card {
-            max-width: 300px;
+            max-width: 250px;
             background-color: #17a2b8; /* Warna latar belakang card (sesuaikan dengan preferensi Anda) */
             color: white;
         }
         .card img {
-            width: 100%;
+            width: 50%;
             height: auto;
-            border-radius: 50%; /* Membuat foto bulat */
+            border-radius: 100%; /* Membuat foto bulat */
         }
     </style>
 </head>
